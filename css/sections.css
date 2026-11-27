@@ -1,0 +1,1399 @@
+/* ==========================================================================
+   Porsche 919 Hybrid Evo · Causal 8-Chapter Flagship Cinema Architecture (V2)
+   95% Monochrome Cinema (#07080A / #FFFFFF) · 5% Racing Red · Zero Magazine Noise
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   01. #hero · Full-Bleed 100svh Track Film Opening (1366x660 Safe)
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 500px;
+  max-height: 1080px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 0 var(--gutter) clamp(38px, 8.5svh, 96px);
+  overflow: hidden;
+  background: #07080A;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+}
+
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(66% 72% at 50% 42%, transparent 24%, rgba(7, 8, 10, 0.44) 100%),
+    linear-gradient(180deg, rgba(7, 8, 10, 0.42) 0%, rgba(7, 8, 10, 0) 32%, rgba(7, 8, 10, 0.44) 60%, rgba(7, 8, 10, 0.94) 100%);
+  pointer-events: none;
+}
+
+.hero__lockup {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.6rem, min(8.2vw, 12.8svh), 7.8rem);
+  line-height: 0.94;
+  letter-spacing: 0.06em;
+  text-indent: 0.06em;
+  color: #FFFFFF;
+}
+
+.hero__sub {
+  margin-top: clamp(10px, 1.8svh, 20px);
+  font-family: var(--font-mono);
+  font-size: clamp(0.84rem, min(1.15vw, 2.0svh), 1.05rem);
+  letter-spacing: 0.2em;
+  color: rgba(247, 248, 250, 0.88);
+}
+
+.hero__cue {
+  display: inline-block;
+  margin-top: clamp(14px, 2.4svh, 28px);
+  width: 1px;
+  height: clamp(24px, 4svh, 36px);
+  background: rgba(255, 255, 255, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__cue::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--porsche-red);
+  transform: translateY(-100%);
+  animation: cueDrop 2s var(--ease-smooth) infinite;
+}
+
+@keyframes cueDrop {
+  0% { transform: translateY(-100%); }
+  60% { transform: translateY(0%); }
+  100% { transform: translateY(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__cue::after {
+    animation: none;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Shared Full-Bleed Cinema Stages & Spacious Quiet Interludes
+   -------------------------------------------------------------------------- */
+.quiet-band {
+  padding-block: clamp(116px, 15vh, 200px);
+  background: #07080A;
+}
+
+.manifesto-intro {
+  padding-block: clamp(124px, 16vh, 210px);
+  background: #07080A;
+  text-align: center;
+}
+
+.manifesto__statement {
+  max-width: 1020px;
+  margin-inline: auto;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.32rem, 2.5vw, 2.25rem);
+  line-height: 1.56;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.manifesto__line {
+  display: block;
+  transition: color 0.7s ease;
+}
+
+.manifesto__line.is-lit {
+  color: #FFFFFF;
+}
+
+.manifesto__triad {
+  margin-top: clamp(64px, 10vh, 120px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.triad-item b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 4.5vw, 4.0rem);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+
+.triad-item span {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--ink-light-muted);
+}
+
+/* Reusable 100vw Full-Bleed Cinema Stage */
+.cinema-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(480px, 90svh, 960px);
+  overflow: hidden;
+  background: #07080A;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cinema-stage--compact {
+  height: clamp(460px, 84svh, 880px);
+}
+
+.cinema-stage__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cinema-stage__layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+}
+
+.cinema-stage__layer.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cinema-stage__layer img,
+.cinema-stage__layer video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cinema-stage__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 8, 10, 0.24) 0%, rgba(7, 8, 10, 0) 34%, rgba(7, 8, 10, 0.30) 60%, rgba(7, 8, 10, 0.92) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cinema-stage__content {
+  position: relative;
+  z-index: 3;
+  width: min(var(--wrap-max), calc(100% - 2 * var(--gutter)));
+  margin-inline: auto;
+  padding-bottom: clamp(36px, 6.5svh, 78px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 36px;
+}
+
+.cinema-stage__copy {
+  max-width: 760px;
+}
+
+.cinema-stage .sec-heading {
+  color: #FFFFFF;
+}
+
+.cinema-stage .sec-sub {
+  color: rgba(247, 248, 250, 0.84);
+}
+
+.stage-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.stage-tab {
+  position: relative;
+  padding: 10px 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 248, 250, 0.56);
+  transition: color 0.25s ease;
+}
+
+.stage-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--porsche-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-cinema);
+}
+
+.stage-tab:hover {
+  color: rgba(247, 248, 250, 0.92);
+}
+
+.stage-tab.is-active {
+  color: #FFFFFF;
+}
+
+.stage-tab.is-active::after {
+  transform: scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   02. #genesis · Lineage Hairline Columns & Quote
+   -------------------------------------------------------------------------- */
+.lineage-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-dark);
+  text-align: left;
+}
+
+.lineage-col {
+  padding: 28px 26px 14px 0;
+  border-right: 1px solid var(--line-dark);
+  opacity: 0.56;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.lineage-col:not(:first-child) {
+  padding-left: 26px;
+}
+
+.lineage-col:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.lineage-col:hover,
+.lineage-col.is-active {
+  opacity: 1;
+}
+
+.lineage-col__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-light-muted);
+}
+
+.lineage-col.is-active .lineage-col__meta {
+  color: var(--porsche-red);
+}
+
+.lineage-col h3 {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: clamp(1.22rem, 1.8vw, 1.56rem);
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+.lineage-col p {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-light-dim);
+}
+
+.quote-spacer {
+  margin-top: clamp(72px, 11vh, 136px);
+}
+
+/* --------------------------------------------------------------------------
+   03. #powertrain · Interactive 9R9 V4 + MGU Power Split & Quiet Strip
+   -------------------------------------------------------------------------- */
+.power-bar-box {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.power-bar-readout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.pb-stat span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light-muted);
+}
+
+.pb-stat b {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.28rem);
+  font-weight: 500;
+  line-height: 1.08;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+
+.pb-stat--accent b {
+  color: var(--porsche-red);
+}
+
+.power-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 26px;
+}
+
+.power-track__v4 {
+  height: 100%;
+  background: #FFFFFF;
+  transition: width 0.16s ease-out;
+}
+
+.power-track__mgu {
+  height: 100%;
+  background: var(--porsche-red);
+  transition: width 0.16s ease-out;
+}
+
+.perf-strip {
+  margin-top: clamp(64px, 9vh, 108px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  text-align: center;
+  padding-top: clamp(44px, 6.5vh, 68px);
+  border-top: 1px solid var(--line-dark);
+}
+
+.perf-metric b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.1vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+
+.perf-metric span {
+  display: block;
+  margin-top: 8px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-light-muted);
+}
+
+/* --------------------------------------------------------------------------
+   04. #aerodynamics · Quiet 4-Datum Architectural Strip
+   -------------------------------------------------------------------------- */
+.aero-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  text-align: center;
+}
+
+.aero-stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.1rem);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+
+.aero-stat span {
+  display: block;
+  margin-top: 10px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-light-muted);
+}
+
+/* --------------------------------------------------------------------------
+   05. #telemetry · Borderless Unrestricted Telemetry Lab (1366x660 Safe)
+   -------------------------------------------------------------------------- */
+.telemetry-section {
+  padding-block: clamp(84px, 9.5svh, 120px) clamp(72px, 10svh, 128px);
+  background: radial-gradient(ellipse 72% 62% at 50% 42%, rgba(213, 0, 28, 0.07) 0%, #07080A 72%);
+  text-align: center;
+}
+
+.lab-head {
+  margin-bottom: clamp(12px, 1.8svh, 22px);
+}
+
+.lab-head .sec-heading {
+  font-size: clamp(1.7rem, 3vw, 2.65rem);
+}
+
+.lab-head .sec-sub {
+  margin-inline: auto;
+  margin-top: 6px;
+  font-size: clamp(0.86rem, 0.96vw, 0.98rem);
+  max-width: 42em;
+}
+
+.lab-visual {
+  position: relative;
+  width: min(980px, 92vw, calc(43svh * 1.9));
+  aspect-ratio: 19 / 10;
+  margin-inline: auto;
+  overflow: hidden;
+  background: #07080A;
+}
+
+.lab-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 54%;
+  opacity: 0.92;
+  -webkit-mask-image: radial-gradient(ellipse 84% 78% at 50% 52%, #000 50%, transparent 98%);
+  mask-image: radial-gradient(ellipse 84% 78% at 50% 52%, #000 50%, transparent 98%);
+}
+
+.lab-visual canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lab-stage-status {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(247, 248, 250, 0.90);
+}
+
+.lab-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--porsche-red);
+}
+
+.lab-stage-status.is-drs .lab-status-dot {
+  background: var(--drs-silver);
+}
+
+.lab-stage-status.is-regen .lab-status-dot {
+  background: var(--ers-ice);
+}
+
+.lab-telemetry {
+  margin: clamp(10px, 1.5svh, 16px) auto 0;
+  width: min(980px, 100%);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 24px;
+  align-items: end;
+  text-align: center;
+}
+
+.hud-lbl {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light-muted);
+}
+
+.hud-val {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.22rem, 2.05vw, 1.85rem);
+  line-height: 1.08;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+
+.hud-val--status {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: clamp(0.88rem, 1.2vw, 1.12rem);
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+}
+
+.hud-val.is-boost {
+  color: #FF4D63;
+}
+
+.hud-val.is-drs {
+  color: var(--drs-silver);
+}
+
+.hud-val.is-regen {
+  color: var(--ers-ice);
+}
+
+/* Sharp 2px Architectural Telemetry Rail Console */
+.lab-rail {
+  margin: clamp(10px, 1.6svh, 18px) auto 0;
+  width: min(980px, 100%);
+  padding: 5px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.dock-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.16);
+  margin-inline: 6px;
+}
+
+.rail-btn {
+  height: 31px;
+  padding: 0 13px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(247, 248, 250, 0.56);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rail-btn:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  color: #FFFFFF;
+}
+
+.rail-btn.is-active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: #FFFFFF;
+  box-shadow: inset 0 -2px 0 var(--porsche-red);
+}
+
+.rail-btn--act {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(247, 248, 250, 0.72);
+}
+
+.rail-btn--act::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.28);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rail-btn--boost.is-active {
+  background: rgba(213, 0, 28, 0.14);
+  border-color: rgba(213, 0, 28, 0.58);
+  color: #FFFFFF;
+  box-shadow: inset 0 -2px 0 var(--porsche-red);
+}
+
+.rail-btn--boost.is-active::before {
+  background: var(--porsche-red);
+  box-shadow: 0 0 8px var(--porsche-red);
+}
+
+.rail-btn--drs.is-active {
+  background: rgba(221, 228, 236, 0.12);
+  border-color: rgba(221, 228, 236, 0.52);
+  color: #FFFFFF;
+  box-shadow: inset 0 -2px 0 var(--drs-silver);
+}
+
+.rail-btn--drs.is-active::before {
+  background: var(--drs-silver);
+  box-shadow: 0 0 8px var(--drs-silver);
+}
+
+.rail-btn--regen.is-active {
+  background: rgba(107, 182, 217, 0.14);
+  border-color: rgba(107, 182, 217, 0.56);
+  color: #FFFFFF;
+  box-shadow: inset 0 -2px 0 var(--ers-ice);
+}
+
+.rail-btn--regen.is-active::before {
+  background: var(--ers-ice);
+  box-shadow: 0 0 8px var(--ers-ice);
+}
+
+.rail-btn[aria-disabled="true"] {
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+
+.dock-slider-wrap {
+  margin: clamp(8px, 1.4svh, 14px) auto 0;
+  width: min(680px, 100%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.slider-bound {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(247, 248, 250, 0.56);
+  white-space: nowrap;
+}
+
+.slider-bound strong {
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.range-hairline {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--porsche-red) 0%,
+    var(--porsche-red) var(--pct, 80%),
+    rgba(255, 255, 255, 0.22) var(--pct, 80%),
+    rgba(255, 255, 255, 0.22) 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+
+.range-hairline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: #FFFFFF;
+  border: 2px solid #07080A;
+  box-shadow: 0 0 0 1px rgba(213, 0, 28, 0.9), 0 0 10px rgba(213, 0, 28, 0.45);
+  cursor: ew-resize;
+}
+
+.range-hairline::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: #FFFFFF;
+  border: 2px solid #07080A;
+  cursor: ew-resize;
+}
+
+.dock-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(247, 248, 250, 0.48);
+}
+
+/* --------------------------------------------------------------------------
+   06. #spa · Pure Weissach White Typographic Interlude (Zero Framed Boxes)
+   -------------------------------------------------------------------------- */
+.weissach-light {
+  background: #FFFFFF;
+  color: #0B0D10;
+  padding-block: clamp(118px, 15.5vh, 206px);
+}
+
+.spa-header {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 32px 64px;
+  align-items: start;
+}
+
+.spa-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 36px;
+  border-top: 1px solid var(--line-light);
+  padding-top: 24px;
+}
+
+.spa-stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 2.9vw, 2.55rem);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: #0B0D10;
+}
+
+.spa-stat--accent b {
+  color: var(--porsche-red-deep);
+}
+
+.spa-stat span {
+  display: block;
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--ink-dark-muted);
+}
+
+/* --------------------------------------------------------------------------
+   07. #nordschleife · 35-Year Benchmark Scale (1983 956 C vs 2018 919 Evo)
+   -------------------------------------------------------------------------- */
+.scale-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px 40px;
+  align-items: center;
+  padding-block: clamp(32px, 4.5vh, 48px);
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.scale-card__date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-light-muted);
+}
+
+.scale-card__car {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+.scale-card__time {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(247, 248, 250, 0.56);
+}
+
+.scale-card--evo .scale-card__date {
+  color: var(--porsche-red);
+}
+
+.scale-card--evo .scale-card__time {
+  color: #FFFFFF;
+}
+
+.scale-card__detail {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-light-dim);
+}
+
+.scale-delta {
+  text-align: center;
+  padding-inline: clamp(18px, 3vw, 44px);
+  border-left: 1px solid var(--line-dark);
+  border-right: 1px solid var(--line-dark);
+}
+
+.scale-delta span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-light-muted);
+}
+
+.scale-delta b {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--porsche-red);
+}
+
+.scale-delta small {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-light-dim);
+}
+
+.scale-bar-visual {
+  margin-top: 32px;
+}
+
+.scale-bar-track {
+  position: relative;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.scale-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 86.1%;
+  background: var(--porsche-red);
+}
+
+.scale-bar-labels {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-light-muted);
+}
+
+/* --------------------------------------------------------------------------
+   08. #legacy · IMAX 76vw Tribute Filmstrip, Clean Spec Ledger & Video Epilogue
+   -------------------------------------------------------------------------- */
+.imax-carousel-wrap {
+  background: #0E1014;
+  padding-block: clamp(104px, 14vh, 176px);
+}
+
+.imax-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.imax-head__hint {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--ink-light-dim);
+}
+
+.imax-progress {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 26px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.imax-progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--porsche-red);
+  transform-origin: left center;
+  transform: scaleX(var(--prog, 0));
+  will-change: transform;
+}
+
+.imax-carousel-wrap.is-paused .imax-progress i {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.carousel-ctrl {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.carousel-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(7, 8, 10, 0.68);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.carousel-btn:hover {
+  border-color: var(--porsche-red);
+  background: rgba(213, 0, 28, 0.14);
+}
+
+.carousel-btn--play .icon-play {
+  display: none;
+}
+
+.carousel-btn--play.is-paused .icon-pause {
+  display: none;
+}
+
+.carousel-btn--play.is-paused .icon-play {
+  display: block;
+}
+
+.carousel-btn--play.is-paused {
+  border-color: var(--porsche-red);
+}
+
+.carousel-count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+  min-width: 66px;
+  text-align: center;
+}
+
+.imax-track {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 3.5%, #000 96.5%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 3.5%, #000 96.5%, transparent 100%);
+}
+
+.imax-track.is-dragging {
+  cursor: grabbing;
+}
+
+.imax-reel {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(16px, 2vw, 28px);
+  width: max-content;
+  will-change: transform;
+}
+
+.imax-slide {
+  position: relative;
+  flex: 0 0 clamp(460px, 48vw, 700px);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #07080A;
+  cursor: zoom-in;
+  text-align: left;
+}
+
+.imax-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-cinema);
+}
+
+.imax-slide:hover img {
+  transform: scale(1.03);
+}
+
+.imax-slide__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 8, 10, 0) 44%, rgba(7, 8, 10, 0.92) 100%);
+  pointer-events: none;
+}
+
+.imax-slide__cap {
+  position: absolute;
+  left: clamp(24px, 3.2vw, 44px);
+  right: clamp(24px, 3.2vw, 44px);
+  bottom: clamp(22px, 3.2vw, 40px);
+  z-index: 2;
+}
+
+.imax-slide__cap span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--porsche-red);
+}
+
+.imax-slide__cap h3 {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.22rem, 2.1vw, 1.78rem);
+  color: #FFFFFF;
+}
+
+.imax-slide__cap p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: rgba(247, 248, 250, 0.82);
+  max-width: 44em;
+}
+
+/* Specs Ledger (Pure Architectural Header — Zero Boxed Card Anchor) */
+.specs-section {
+  padding-top: clamp(108px, 14vh, 176px);
+  background: #07080A;
+}
+
+.specs-head {
+  max-width: 760px;
+}
+
+.modes-row {
+  margin-top: clamp(48px, 7vh, 80px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.mode-row-btn {
+  text-align: left;
+  padding: 28px 32px 28px 0;
+  border-right: 1px solid var(--line-dark);
+  opacity: 0.56;
+  transition: opacity 0.25s ease;
+}
+
+.mode-row-btn:not(:first-child) {
+  padding-left: 32px;
+}
+
+.mode-row-btn:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.mode-row-btn:hover,
+.mode-row-btn.is-active {
+  opacity: 1;
+}
+
+.mode-row-btn h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.65vw, 1.42rem);
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+.mode-row-btn.is-active h3 {
+  color: var(--porsche-red);
+}
+
+.mode-row-btn p {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.72;
+  color: var(--ink-light-dim);
+}
+
+.ledger-bar {
+  margin-top: clamp(56px, 8vh, 92px);
+}
+
+.ledger-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(28px, 4vw, 64px);
+  border-top: 1px solid var(--line-dark);
+}
+
+.ledger-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.ledger-item span {
+  font-size: 14px;
+  color: var(--ink-light-dim);
+}
+
+.ledger-item b {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: right;
+}
+
+.epilogue-stage {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(92px, 13vh, 156px);
+  height: clamp(460px, 78svh, 800px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #07080A;
+}
+
+.epilogue-stage video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.epilogue-stage__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #07080A 0%, rgba(7, 8, 10, 0.38) 48%, rgba(7, 8, 10, 0.92) 100%);
+  pointer-events: none;
+}
+
+.epilogue-stage__inner {
+  position: relative;
+  z-index: 2;
+  padding-inline: var(--gutter);
+  max-width: 960px;
+}
+
+.epilogue-stage__inner .sec-sub {
+  margin-inline: auto;
+  color: rgba(247, 248, 250, 0.86);
+}
+
+.epilogue-actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.official-btn {
+  padding: 12px 26px;
+  border: 1px solid #FFFFFF;
+  background: #FFFFFF;
+  color: #07080A;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.official-btn:hover {
+  background: transparent;
+  color: #FFFFFF;
+}
+
+.official-btn--outline {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.44);
+}
+
+.official-btn--outline:hover {
+  border-color: var(--porsche-red);
+  background: rgba(213, 0, 28, 0.14);
+}
+
+/* --------------------------------------------------------------------------
+   Architectural Portal Return Strip & Minimal Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding-block: clamp(48px, 6.5vh, 76px) clamp(36px, 5vh, 56px);
+  background: #07080A;
+  border-top: 1px solid var(--line-dark);
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.portal-bar {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+  transition: color 0.2s ease;
+}
+
+.portal-bar:hover {
+  color: var(--porsche-red);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  color: var(--ink-light-dim);
+}
+
+.footer-links a:hover {
+  color: #FFFFFF;
+}
+
+.footer-bottom {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 24px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--ink-light-muted);
+}
+
+.footer-bottom a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints (Mobile 390x844 Zero Overflow)
+   -------------------------------------------------------------------------- */
+@media (max-width: 980px) {
+  .manifesto__triad,
+  .lineage-cols,
+  .scale-grid,
+  .spa-header,
+  .modes-row,
+  .ledger-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lineage-col,
+  .mode-row-btn {
+    border-right: none;
+    border-bottom: 1px solid var(--line-dark);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .lineage-col:last-child,
+  .mode-row-btn:last-child {
+    border-bottom: none;
+  }
+
+  .scale-delta {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+    padding: 20px 0;
+    text-align: left;
+  }
+
+  .lab-visual {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .lab-telemetry,
+  .aero-strip-grid,
+  .power-bar-readout,
+  .perf-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dock-sep {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .imax-track {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .imax-slide {
+    flex: 0 0 82vw;
+  }
+}

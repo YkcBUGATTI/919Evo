@@ -1,0 +1,8 @@
+{
+  "name": "Porsche 919 Hybrid Evo",
+  "short_name": "919 Evo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07080A",
+  "theme_color": "#07080A"
+}

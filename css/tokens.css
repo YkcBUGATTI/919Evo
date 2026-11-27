@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Porsche 919 Hybrid Evo · Weissach Dual-Polarity Design Tokens
+   95% Monochrome Industrial Cinema (#07080A / #FFFFFF) · 5% Racing Red (#D5001C)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../fonts/SpaceGrotesk-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../fonts/SpaceGrotesk-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../fonts/SpaceGrotesk-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('../fonts/plex-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('../fonts/plex-mono-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Dark Polarity · Weissach Carbon Obsidian */
+  --bg-dark: #07080A;
+  --bg-dark-elev: #0E1014;
+  --ink-light: #F7F8FA;
+  --ink-light-dim: rgba(247, 248, 250, 0.72);
+  --ink-light-muted: rgba(247, 248, 250, 0.46);
+  --line-dark: rgba(255, 255, 255, 0.13);
+
+  /* Light Polarity · Weissach Laboratory White */
+  --bg-light: #FFFFFF;
+  --bg-light-soft: #F3F4F6;
+  --ink-dark: #0B0D10;
+  --ink-dark-dim: rgba(11, 13, 16, 0.68);
+  --ink-dark-muted: rgba(11, 13, 16, 0.46);
+  --line-light: rgba(11, 13, 16, 0.12);
+
+  /* Restrained Motorsport Accents (<= 5% budget) */
+  --porsche-red: #D5001C;
+  --porsche-red-deep: #B50018;
+  --ers-ice: #6BB6D9;
+  --drs-silver: #DDE4EC;
+
+  /* Active Defaults (Dark Polarity) */
+  --bg: var(--bg-dark);
+  --bg-elev: var(--bg-dark-elev);
+  --ink: var(--ink-light);
+  --ink-dim: var(--ink-light-dim);
+  --ink-muted: var(--ink-light-muted);
+  --line: var(--line-dark);
+  --accent: var(--porsche-red);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-body: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* Layout Rhythm */
+  --wrap-max: 1320px;
+  --gutter: clamp(24px, 5vw, 80px);
+  --header-h: 72px;
+
+  /* Motion */
+  --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] {
+  --bg: var(--bg-light);
+  --bg-elev: var(--bg-light-soft);
+  --ink: var(--ink-dark);
+  --ink-dim: var(--ink-dark-dim);
+  --ink-muted: var(--ink-dark-muted);
+  --line: var(--line-light);
+  --accent: var(--porsche-red-deep);
+}
